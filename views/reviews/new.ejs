@@ -1,0 +1,151 @@
+<html>
+
+<head>
+    <!-- Make site responsive on mobile/tablet -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        Yelpcamp
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+    
+                <a class="navbar-brand" href="/">YelpCamp</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/campgrounds">Home</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <% if(!currentUser){ %>
+                      <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
+                      <li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>"><a href="/register">Sign Up</a></li>
+                  <% } else { %>
+                      <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+                      <li><a href="/logout">Logout</a></li>
+                  <% } %>
+              </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <% if(error && error.length > 0){ %>
+        <div class="alert alert-danger">
+            <%= error %>
+        </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+
+        <div class="alert alert-success">
+            <%= success %>
+        </div>
+        <% } %>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align: center">New Review: <%= campground.name %></h1>
+            <div style="width: 30%; margin: 25px auto;">
+                <form action="/campgrounds/<%= campground._id %>/reviews" method="POST">
+                    <div class="form-group">
+                        <label for="rating">Leave a rating:</label>
+                        <fieldset class="starability-basic form-group" id="rating">
+                        <div>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" checked />
+                        <label for="first-rate5" title="5 stars - Amazing">
+                            <%- '<span class="fa fa-star checked"></span>'.repeat(5) %>
+                        </label>
+                        </div>
+                        <div>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="4 stars - Very good">
+                            <%- '<span class="fa fa-star checked"></span>'.repeat(4) %>
+                        </label>
+                        </div>
+                        <div>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="3 stars - Average">
+                            <%- '<span class="fa fa-star checked"></span>'.repeat(3) %>
+                        </label>
+                        </div>
+                        <div>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="2 stars - Not good">
+                            <%- '<span class="fa fa-star checked"></span>'.repeat(2) %>
+                        </label>
+                        </div>
+                        <div>
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="1 star - Terrible">
+                            <%- '<span class="fa fa-star checked"></span>'.repeat(1) %>
+                        </label>
+                    </div>
+                            
+                        </fieldset>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" type="text" name="review[text]" placeholder="Write a review for this campground..." rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block">Submit a Review</button>
+                    </div>
+                </form>
+                <a href="/campgrounds/<%= campground._id %>">Go Back</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    
+<!-- jQuery CDN -->
+<script
+src="https://code.jquery.com/jquery-3.1.1.min.js"
+integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+crossorigin="anonymous"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+</body>
+
+
+
+
+</html>
