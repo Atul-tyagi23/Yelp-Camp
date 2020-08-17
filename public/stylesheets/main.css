@@ -68,3 +68,17 @@ body{
 .review{
     background-color: rgba(216, 247, 204, 0.329);
 }
+
+.footer {
+      width: 100%;
+     height: 60px;         /* Set the fixed height of the footer here */
+    line-height: 30px;    /* Vertically center the text there */
+    background-color: black;
+    color: cornflowerblue;
+    text-align: center;
+     
+  }
+  
+  .footer > .container {
+  margin: auto;
+  }

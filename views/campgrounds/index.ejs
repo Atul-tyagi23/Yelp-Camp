@@ -27,6 +27,8 @@
                         }
                     }
                 </style>
+                  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 </head>
     
@@ -98,7 +100,7 @@
      
         <div class="row text-center" style="display: flex; flex-wrap: wrap ;" >
          <% campgrounds.forEach((campground)=>{ %>
-            <div class ="col-md-3 col-sm-6">
+            <div class ="col-md-3 col-sm-6" data-aos="fade-left">
              <div class ="thumbnail"> 
                 <img src="<%= campground.image %>">
              
@@ -176,10 +178,19 @@
 
      </div>
 
+      
+
+ 
 
 
 
 
+<footer class="footer mt-auto py-3 bg-dark">
+    <div class="container">
+      <p class="navbar-text">© 2020 Copyright: Atultyagi</p>
+      <p class="navbar-text navbar-right">YelpCamp</p>
+    </div>
+ </footer>
 
 
 
@@ -193,6 +204,13 @@ crossorigin="anonymous"></script>
 
 <!-- Bootstrap JS CDN -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+      offset: 400, 
+      duration: 1000
+  });
+</script>
 
 </body>
 
